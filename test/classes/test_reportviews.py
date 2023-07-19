@@ -48,3 +48,18 @@ class TestReportViews:
             self.CV.__getitem__(1)
 
         assert str(exp_exception.value) == "Input must be a tuple, list or a cell."
+
+    def test_cell_view_report_raw_method(self):
+        """Test the raw method for the CellView class."""
+        with pytest.raises(KeyError) as exp_exception:
+            self.CV.raw(self.cell_2)
+
+        print(exp_exception.value)
+        assert (
+            str(exp_exception.value)
+            == "'cell Cell((1, 2, 3, 8)) is not in the cell dictionary'"
+        )
+
+        # assert list(self.CV.raw(self.cell_1)) == [
+        #     self.CX._cells[(1,2,3,4)]
+        # ]
